@@ -313,14 +313,14 @@
 	  
 		// 2. BO_FREE 테이블에서 SQL로 데이터 가져오기
 	 	stmt = conn.createStatement();	// 2-1. Statement 생성
-	 	rs = stmt.executeQuery("SELECT NUM, CONTENT , HIT, REGDATE FROM BO_FREE ORDER BY NUM DESC "); // 2-2. SQL 쿼리 실행
+	 	rs = stmt.executeQuery("SELECT NUM, CONTENT , HIT, REGDATE FROM BO_FREE ORDER BY NUM DESC"); // 2-2. SQL 쿼리 실행
 		
 	 	// 3. rs로 데이터 가져온 걸 웹에 보여주기 -> 쿼리 실행 결과 출력
 	 	while(rs.next()) {
 %>
 <ul>
 	<li><%= rs.getInt("NUM") %></li>
-	<li><%= rs.getString("SUBJECT") %></li>
+	<li><%= rs.getString("CONTENT") %></li>
 	<li><%= rs.getInt("HIT") %></li>
 	<li><%= rs.getString("REGDATE").substring(0, 10) %></li>
 </ul>	
