@@ -306,11 +306,11 @@
             <div class="swiper-wrapper">
             
 <%
-  String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:orcl";
-  String USER = "jsp";
-  String PASSWORD = "123456";
+  	String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:orcl";
+  	String USER = "jsp";
+  	String PASSWORD = "123456";
 	
-  Connection conn = null; //디비 접속 성공시 접속 정보 저장
+ 	Connection conn = null; //디비 접속 성공시 접속 정보 저장
 	Statement stmt = null; //쿼리를 실행하기 객체 정보
 	ResultSet rs = null;
 	
@@ -323,14 +323,14 @@
 	  
 		// 2. BO_FREE 테이블에서 SQL로 데이터 가져오기
 	 	stmt = conn.createStatement();	// 2-1. Statement 생성
-	 	rs = stmt.executeQuery("SELECT NUM, CONTENT , HIT, REGDATE FROM BO_FREE WHERE rownum <=3"); // 2-2. SQL 쿼리 실행
+	 	rs = stmt.executeQuery("SELECT NUM, SUBJECT , HIT, REGDATE FROM BO_FREE WHERE rownum <=3 ORDER BY NUM DESC"); // 2-2. SQL 쿼리 실행
 		
 	 	// 3. rs로 데이터 가져온 걸 웹에 보여주기 -> 쿼리 실행 결과 출력
 	 	while(rs.next()) {
 %>
  	<div class="swiper-slide">
 		<ul>
-			<li><%= rs.getString("CONTENT") %></li>
+			<li><a><%= rs.getString("SUBJECT") %></a></li>
 		</ul>
 	</div>
 <% 		 		
