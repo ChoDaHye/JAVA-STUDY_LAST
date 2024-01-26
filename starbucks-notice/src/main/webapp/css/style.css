@@ -208,6 +208,14 @@ body {
     border-radius: 10px;
 }
 
+.btn-w .input-btn-w {
+	background-color: tomato;
+  padding: 10px;
+  color: #fff;
+  border-radius: 10px;
+  border: 1px solid #fff;
+}
+
 .card-header3 {
     text-align: center;
     padding: 20px;
