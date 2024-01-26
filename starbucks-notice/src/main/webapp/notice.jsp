@@ -307,6 +307,8 @@
 	Exception exception = null;
 	
   try {
+		// 0. 
+		Class.forName("oracle.jdbc.driver.OracleDriver");
 		// 1. JDBC로 Oracle연결
 	    conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
 	    System.out.println("오라클 접속 성공");

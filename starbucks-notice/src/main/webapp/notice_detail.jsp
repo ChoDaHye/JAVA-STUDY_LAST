@@ -69,7 +69,54 @@
 	</section>
 	
 	<!-- notice contents -->
+	 <!-- notice list -->
+  <section>
+	  <div class="inner notice__contents">
+	  	<div class="notice__header">
+	  		<div class="notice__no">NO</div>
+	  		<div class="notice__title">제목</div>
+	  		<div class="notice__regdate">조회수</div>
+	  		<div class="notice__hit">날짜</div>
+	  	</div>
+	  	<div class="notice__list__itmes">
+<%
+		String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:orcl";
+	  	String USER = "jsp";
+	  	String PASSWORD = "123456";
+		
+	 	Connection conn = null; //디비 접속 성공시 접속 정보 저장
+		Statement stmt = null; //쿼리를 실행하기 객체 정보
+		ResultSet rs = null;
+		
+		Exception exception = null;
 	
+  try {
+		// 0. 
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		// 1. JDBC로 Oracle연결
+	    conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
+	    System.out.println("오라클 접속 성공");
+	  
+		// 2. BO_FREE 테이블에서 SQL로 데이터 가져오기
+	 	stmt = conn.createStatement();	// 2-1. Statement 생성
+	 	rs = stmt.executeQuery("SELECT NUM, SUBJECT , HIT, REGDATE FROM BO_FREE ORDER BY NUM DESC"); // 2-2. SQL 쿼리 실행
+		
+	 	// 3. rs로 데이터 가져온 걸 웹에 보여주기 -> 쿼리 실행 결과 출력
+	 	while(rs.next()) {
+	%>
+	<ul>
+		<li><%= rs.getInt("NUM") %></li>
+		<li><%= rs.getString("SUBJECT") %></li>
+		<li><%= rs.getInt("HIT") %></li>
+		<li><%= rs.getString("REGDATE").substring(0, 10) %></li>
+	</ul>	
+	<% 		
+	
+	    }
+	  } catch(Exception e) {
+		  System.out.println("오라클 접속 오류:" + e);
+	  }
+	%>
 	
 	<!-- 목록 버튼 -->
 	
